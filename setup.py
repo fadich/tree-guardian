@@ -7,7 +7,7 @@ setup(
     author='Fadi A.',
     author_email='royalfadich@gmail.com',
     version='0.1.0',
-    description='Watch the directory tree hash and trigger callback on changes detecting.',
+    description='Track the changes into the filesystem and trigger callback on changes detecting.',
     packages=find_packages(),
     zip_safe=False,
     requires=[
