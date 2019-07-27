@@ -1,7 +1,5 @@
 # Tree Guardian
 
----
-
 Track the changes into the filesystem and trigger callback on changes 
  detecting.
 
@@ -11,7 +9,7 @@ Track the changes into the filesystem and trigger callback on changes
 ### Installation
 
 ```bash
-pip install ...
+pip install tree-guardian
 ```
 
 ### Usage
