@@ -3,7 +3,7 @@ import re
 import time
 import hashlib
 
-from typing import Iterable, Callable
+from typing import Iterable, Callable, Dict
 from threading import Event
 
 
@@ -58,7 +58,11 @@ class HashObserver(object):
 
         return path_hash.hexdigest()
 
-    def observe(self, callback: Callable, event: Event = None, *args, **kwargs):
+    def observe(self, callback: Callable, event: Event = None,
+                args: Iterable = None, kwargs: Dict = None):
+        args = args or []
+        kwargs = kwargs or {}
+
         hsh = self.hash
         self._stopped = False
 
