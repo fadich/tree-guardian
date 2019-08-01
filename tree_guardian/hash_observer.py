@@ -14,7 +14,7 @@ class HashObserver(object):
             raise ValueError(f'Frequency should be great than zero; got {frequency}')
         
         self.path = path
-        self.excluded = set(exclude) or {}
+        self.excluded = set(exclude or {})
         self.frequency = frequency
 
         self._stopped = False
