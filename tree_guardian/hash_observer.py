@@ -4,13 +4,18 @@ import time
 import hashlib
 
 from typing import Iterable, Callable
+from threading import Event
 
 
 class HashObserver(object):
 
-    def __init__(self, path: str = '.', exclude: Iterable[str] = None):
+    def __init__(self, path: str = '.', exclude: Iterable[str] = None, frequency: float = 0.1):
+        if frequency <= 0.0:
+            raise ValueError(f'Frequency should be great than zero; got {frequency}')
+        
         self.path = path
-        self.excluded = set(exclude or ('.idea', 'venv', '.git'))
+        self.excluded = set(exclude)
+        self.frequency = frequency
 
         self._stopped = False
 
@@ -53,13 +58,20 @@ class HashObserver(object):
 
         return path_hash.hexdigest()
 
-    def observe(self, callback: Callable, *args, **kwargs):
+    def observe(self, callback: Callable, event: Event = None, *args, **kwargs):
         hsh = self.hash
         self._stopped = False
+
         while not self._stopped:
-            time.sleep(0.1)
+            time.sleep(self.frequency)
+
+            if event and event.set():
+                self.stop()
+                break
+
             if self.hash == hsh:
                 continue
+
             hsh = self.hash
             callback(*args, **kwargs)
 
