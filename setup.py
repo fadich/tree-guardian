@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name='tree_guardian',
-    version='0.1.3',
+    version='0.1.4-dev',
     url='https://github.com/fadich/tree-guardian',
     author='Fadi A.',
     author_email='royalfadich@gmail.com',
