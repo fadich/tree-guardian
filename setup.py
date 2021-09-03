@@ -19,5 +19,8 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     requires=[
+    ],
+    scripts=[
+        'tree_guardian/cli/tree-guardian-observe',
     ]
 )
