@@ -12,10 +12,9 @@ Track the changes into the filesystem and trigger callback on changes
 pip install tree-guardian
 ```
 
-### Usage
+### Usage (Python)
 
 Observe the changes into your project.
-
 ```python
 from tree_guardian import observe
 
@@ -29,7 +28,6 @@ observe(cb)  # Run observer
 ```
 
 Run in background.
-
 ```python
 from time import sleep
 from threading import Event
@@ -52,4 +50,33 @@ try:
     sleep(10)  # Run for 10 seconds or until interrupted
 except KeyboardInterrupt:
     event.set()
+```
+
+### Usage (Cli)
+
+You can also use tree-guardian commands in shell. To make observe, run, for example:
+```shell
+tree-guardian-observe --command='[YOUR SHELL COMMAND HERE]'
+```
+
+This command supports the following params:
+```shell
+usage: tree-guardian-observe [-h] [-d] -c CALLBACK [-p PATH] [-e [EXCLUDE ...]]
+
+Observe directory and trigger callback on change detection
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d, --debug           set debug log level
+  -c CALLBACK, --callback CALLBACK
+                        callback command
+  -p PATH, --path PATH  the observable root path
+  -e [EXCLUDE ...], --exclude [EXCLUDE ...]
+                        excluded files from observe
+
+```
+
+Call it with `--help` flag to get more details.
+```shell
+tree-guardian-observe --help
 ```

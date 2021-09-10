@@ -10,7 +10,8 @@ def read(fname):
 
 setup(
     name='tree_guardian',
-    version='0.1.3',
+    version='0.2.0',
+    keywords=['tree-guardian', 'observe', 'observer', 'directory', 'changes', ],
     url='https://github.com/fadich/tree-guardian',
     author='Fadi A.',
     author_email='royalfadich@gmail.com',
@@ -19,5 +20,8 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     requires=[
+    ],
+    scripts=[
+        'tree_guardian/cli/tree-guardian-observe',
     ]
 )

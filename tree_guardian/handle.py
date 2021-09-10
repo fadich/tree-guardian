@@ -1,13 +1,11 @@
 import os
 import sys
-import time
 
 from typing import Iterable, Callable, Union
 from threading import Thread, Event as TEvent
 
 from .hash_observer import HashObserver
 from .constants import EXCLUDE_RECOMMENDED
-
 
 __all__ = [
     'observe',
@@ -18,9 +16,14 @@ TIP = """Observing path "{path}" triggering `{function}()` excluding:
 """
 
 
-def observe(callback: Callable, path: str = '.', exclude: Iterable[str] = None, 
-            run_async: bool = False, approach: Union[Thread] = None,
-            event: Union[TEvent] = None):
+def observe(
+    callback: Callable,
+    path: str = '.',
+    exclude: Iterable[str] = None,
+    run_async: bool = False,
+    approach: Union[Thread] = None,
+    event: Union[TEvent] = None
+):
     """Observe directory and trigger callback on change detection.
  
     :param callback: Target function to be called
@@ -58,6 +61,12 @@ def observe(callback: Callable, path: str = '.', exclude: Iterable[str] = None,
         observer.observe(callback=callback)
         return
 
-    handler = approach(target=observer.observe, daemon=True, 
-                       kwargs={'callback': callback, 'event': event})
+    handler = approach(
+        target=observer.observe,
+        daemon=True,
+        kwargs={
+            'callback': callback,
+            'event': event
+        }
+    )
     handler.start()
