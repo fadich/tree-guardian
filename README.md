@@ -67,9 +67,9 @@ Observe directory and trigger callback on change detection
 
 optional arguments:
   -h, --help            show this help message and exit
-  -d, --debug           set debug log level
-  -c CALLBACK, --callback CALLBACK
-                        callback command
+  -d, --debug           run observe on debug mode; it also displays all trigger-command output
+  -c [CALLBACK_COMMAND ...], --cmd [CALLBACK_COMMAND ...], --command [CALLBACK_COMMAND ...], --callback [CALLBACK_COMMAND ...], --callback-command [CALLBACK_COMMAND ...]
+                        trigger command
   -p PATH, --path PATH  the observable root path
   -e [EXCLUDE ...], --exclude [EXCLUDE ...]
                         excluded files from observe
