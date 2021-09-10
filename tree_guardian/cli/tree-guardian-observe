@@ -22,10 +22,14 @@ def main():
     )
     parser.add_argument(
         '-c',
+        '--cmd',
+        '--command',
         '--callback',
-        dest='callback',
+        '--callback-command',
+        dest='callback_command',
         type=str,
         required=True,
+        nargs='*',
         help='trigger command'
     )
     parser.add_argument(
@@ -53,12 +57,17 @@ def main():
         sys.stdout = open('/dev/null', 'w')
 
     def callback_command(cmd: str):
-        Popen(cmd, shell=True, stdout=sys.stdout)
+        Popen(
+            args=cmd,
+            shell=True,
+            stdout=sys.stdout,
+            stderr=sys.stderr
+        ).communicate()
 
     event = Event()
     try:
         observe(
-            callback=lambda: callback_command(args.callback),
+            callback=lambda: callback_command(' '.join(args.callback_command)),
             path=args.path,
             exclude=args.exclude,
             run_async=False
