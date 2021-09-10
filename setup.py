@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name='tree_guardian',
-    version='0.1.4',
+    version='0.2.0',
     keywords=['tree-guardian', 'observe', 'observer', 'directory', 'changes', ],
     url='https://github.com/fadich/tree-guardian',
     author='Fadi A.',
